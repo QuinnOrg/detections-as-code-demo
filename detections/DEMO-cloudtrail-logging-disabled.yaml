@@ -1,0 +1,18 @@
+id: "01a117fe-850c-7987-9be9-691f20a414fb"
+name: "CloudTrail Logging Disabled or Trail Deleted"
+severity: 12
+state: "test_mode"
+frequencyCron: "15m"
+lookBackSeconds: 900
+mitreTechniques: ["T1562.008"]
+logicDescription: "Matches AWS CloudTrail events where the event name is StopLogging, DeleteTrail or UpdateTrail. These are the API calls that stop, remove or reconfigure an audit trail."
+attackScenario: "An attacker who has gained access to an AWS account turns off or deletes CloudTrail so their next actions are not recorded. Defenders lose the audit trail they would use to investigate, so any of these calls outside a planned change is worth a look."
+references:
+  - "https://attack.mitre.org/techniques/T1562/008/"
+  - "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-turning-off-logging.html"
+deduplicationFields:
+  - "actor.user.name"
+deduplicationWindowSeconds: 3600
+query: |-
+  @CloudTrail
+  | where event_name in~ ("StopLogging", "DeleteTrail", "UpdateTrail")
