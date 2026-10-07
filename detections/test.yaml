@@ -1,6 +1,6 @@
 id: "01a117b1-f6e6-7e96-a1ac-a5194be3c126"                     # uuidgen -7 / python -c "import uuid; print(uuid.uuid7())"
 name: "CLOUDTRAIL_TEST_DETECTION"      # 1-200 characters
-severity: 3                                      # 1=LOW, 2=MEDIUM, 3=HIGH, 4=CRITICAL
+severity: 4                                      # 1=LOW, 2=MEDIUM, 3=HIGH, 4=CRITICAL
 state: "enabled"                                 # enabled | disabled | test_mode
 frequencyCron: "5m"                              # hours/minutes ("5m", "1h", "1h30m"), a 5-field cron, or an @-macro; 1m to 31d
 lookBackSeconds: 300                             # query lookback window, in seconds; must be >= the frequencyCron interval
