@@ -377,7 +377,6 @@ def yaml_to_create_input(detection: dict[str, Any]) -> dict[str, Any]:
         "severity": _severity_to_enum(detection["severity"]),
         "frequencyCron": frequency,
         "lookBackSeconds": lookback_raw,
-        "type": str(detection.get("type", DEFAULT_TYPE)).upper(),
         "mitreTechniques": _ensure_list(detection.get("mitreTechniques")),
         "logicDescription": detection.get("logicDescription") or "",
         "attackScenario": detection.get("attackScenario") or "",
