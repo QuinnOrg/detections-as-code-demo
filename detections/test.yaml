@@ -1,0 +1,23 @@
+id: "01a117b1-f6e6-7e96-a1ac-a5194be3c126"                     # uuidgen -7 / python -c "import uuid; print(uuid.uuid7())"
+name: "CLOUDTRAIL_TEST_DETECTION"      # 1-200 characters
+severity: 3                                      # 1=LOW, 2=MEDIUM, 3=HIGH, 4=CRITICAL
+state: "enabled"                                 # enabled | disabled | test_mode
+frequencyCron: "5m"                              # hours/minutes ("5m", "1h", "1h30m"), a 5-field cron, or an @-macro; 1m to 31d
+lookBackSeconds: 300                             # query lookback window, in seconds; must be >= the frequencyCron interval
+query: |-
+  @CloudTrail
+  | where event_name =~ "ConsoleLogin"
+  | where actor.user.type =~ "Root"
+
+# ----- OPTIONAL -----
+
+# logicDescription = literal description of what the query matches
+# (data source, events, fields). 2-4 sentences.
+logicDescription: "Matches Cloudtrail events where root login happens. Two-to-four sentences describing the query literally."
+# attackScenario = why an adversary would trigger these events. 2-4
+# sentences from the attacker's perspective. Keep separate from
+# logicDescription.
+attackScenario: "An adversary <does what> to <achieve what goal>. Two-to-four sentences explaining why these events indicate malicious activity."
+
+mitreTechniques: []                              # e.g. ["T1078.004"]; list the most specific applicable subtechnique only. Tactics are derived server-side.
+references: []                                   # e.g. ["https://attack.mitre.org/techniques/T1078/004/"]
