@@ -1,6 +1,6 @@
 id: "01a11806-dfc5-7748-9b0a-957aa8167826"
 name: "CloudTrail Logging Disabled or Trail Deleted"
-severity: 3
+severity: 4
 state: "test_mode"
 frequencyCron: "15m"
 lookBackSeconds: 900
